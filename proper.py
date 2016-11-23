@@ -348,8 +348,9 @@ if __name__ == '__main__':
 
     while True:
         try:
-            INP = parse(tokenize(input()))
+            INP = parse(tokenize(input("proper> ")))
             _eval(INP, STACK)
+            print(STACK[0])
         except (EOFError, KeyboardInterrupt):
             print()
             break
