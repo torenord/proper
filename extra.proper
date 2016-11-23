@@ -1,0 +1,3 @@
+'fac { dup 0 = { drop 1 } { dup 1 - fac * } ifelse } define
+'fib { dup 2 < { } { dup 1 - fib swap 2 - fib + } ifelse } define
+'triangle { dup 1 + * 2 div } define

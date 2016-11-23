@@ -1,0 +1,36 @@
+'true { 1 } define
+'false { 0 } define
+
+'not { 0 = { 1 } { 0 } ifelse } define
+'and { * 0 = not } define
+'or { not swap not and not } define
+
+'> { swap < } define
+'>= { < not } define
+'<= { > not } define
+
+'length {
+  dup [ ] =
+  { drop 0 }
+  { rest length 1 + }
+  ifelse
+} define
+
+'reverse {
+  dup [ ] =
+  { }
+  { dup first list swap rest reverse swap append }
+  ifelse
+} define
+
+'range-helper {
+  dup 0 =
+  { drop [ ] }
+  { dup 1 - swap list swap range-helper append }
+  ifelse
+} define
+
+'range { range-helper reverse } define
+
+'sum { '+ reduce } define
+'average { dup sum swap length / } define
