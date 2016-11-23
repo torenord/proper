@@ -1,0 +1,3 @@
+* Proper
+
+The world's first Tore-oriented programming language.
