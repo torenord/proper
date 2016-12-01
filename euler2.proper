@@ -1,8 +1,0 @@
-"library.proper" load
-"extra.proper" load
-
-'fib-iter { dup rot + } define
-
-0 1 'fib-iter 20 times drop
-
-print_stack
