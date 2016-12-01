@@ -31,12 +31,12 @@ def dup(stack):
 def rot(stack):
     """Rotates the third item to the top."""
 
-    a = stack.pop()
-    b = stack.pop()
     c = stack.pop()
-    stack.append(a)
-    stack.append(c)
+    b = stack.pop()
+    a = stack.pop()
     stack.append(b)
+    stack.append(c)
+    stack.append(a)
 
 def over(stack):
     """Makes a copy of the second item and pushes it on top."""
@@ -46,6 +46,18 @@ def over(stack):
     stack.append(b)
     stack.append(a)
     stack.append(b)
+
+def inc(stack):
+    """Increment."""
+
+    a = stack.pop()
+    stack.append(a + 1)
+
+def dec(stack):
+    """Decrement."""
+
+    a = stack.pop()
+    stack.append(a - 1)
 
 def add(stack):
     """Addition."""
@@ -67,6 +79,13 @@ def mul(stack):
     b = stack.pop()
     a = stack.pop()
     stack.append(a * b)
+
+def _pow(stack):
+    """Power."""
+
+    b = stack.pop()
+    a = stack.pop()
+    stack.append(a ** b)
 
 def div(stack):
     """Division without remainder."""
@@ -151,9 +170,12 @@ dictionary = {
     "rot": rot,
     "over": over,
 
+    "inc": inc,
+    "dec": dec,
     "+": add,
     "-": sub,
     "*": mul,
+    "^": _pow,
     "/": truediv,
     "//": div,
     "%": mod,
@@ -315,7 +337,7 @@ def _eval(inp, stack):
                     consequent = stack.pop()
                     condition = stack.pop()
 
-                    if condition == 1:
+                    if condition != 0:
                         inp = consequent + inp
                     else:
                         inp = alternative + inp
@@ -345,11 +367,3 @@ if __name__ == '__main__':
     if len(sys.argv) == 2:
         INP = parse(tokenize(open(sys.argv[1]).read()))
         _eval(INP, STACK)
-
-    while True:
-        try:
-            INP = parse(tokenize(input()))
-            _eval(INP, STACK)
-        except (EOFError, KeyboardInterrupt):
-            print()
-            break
