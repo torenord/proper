@@ -1,8 +1,7 @@
-"library.proper" load
+"../library.proper" load
 
 'multiple_of_3_or_5 { dup 3 % 0 = swap 5 % 0 = or } define
 
 'solve { 1 - range dup 'multiple_of_3_or_5 map '* zip sum } define
 
 1000 solve print
-quit

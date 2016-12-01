@@ -1,0 +1,8 @@
+'solve {
+  dup 6 10 rot ^ dec * dup 39 %
+  { drop inc solve }
+  { 39 // swap drop }
+  ifelse
+} define
+
+1 solve print
