@@ -364,6 +364,9 @@ if __name__ == '__main__':
 
     STACK = []
 
+    INP = parse(tokenize(open("library.proper").read()))
+    _eval(INP, STACK)
+
     if len(sys.argv) == 2:
         INP = parse(tokenize(open(sys.argv[1]).read()))
         _eval(INP, STACK)

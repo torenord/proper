@@ -34,3 +34,8 @@
 
 'sum { '+ reduce } define
 'average { dup sum swap length / } define
+
+'-rot { rot rot } define
+'nip { swap drop } define
+'tuck { swap over } define
+'2drop { drop drop } define
