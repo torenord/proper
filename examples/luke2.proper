@@ -1,0 +1,8 @@
+'solve {
+  over 4000000000 >=
+  { 2drop }
+  { -rot tuck + -rot swap dup 4 * rot + solve }
+  ifelse
+} define
+
+0 2 8 solve print
