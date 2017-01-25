@@ -1,0 +1,52 @@
+#+TITLE: The Proper Language Reference
+#+AUTHOR: Tore Sund Norderud
+
+#+OPTIONS: toc:nil
+
+* COMMENT Introduction
+
+Proper is the world's first Tore-oriented programming language.
+
+* COMMENT Lexical analysis
+* COMMENT Data model
+* COMMENT Execution model
+* COMMENT Expressions
+* COMMENT Simple statements
+* COMMENT Compound statements
+* Grammar specification
+
+#+BEGIN_SRC
+<datum>              ::= <simple datum> | <compound datum>
+<simple datum>       ::= <boolean> | <number> | <string> | <symbol>
+<compound datum>     ::= <list>
+<list>               ::= [<datum>*]
+
+<boolean>            ::= true | false
+
+<number>             ::= <integer>
+<integer>            ::= 0 | <sign> <non-zero digit> <digit>*
+<sign>               ::= <empty> | -
+<non-zero digit>     ::= 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+<digit>              ::= 0 | <non-zero digit>
+
+<string>             ::= "<string element>*"
+<string element>     ::= <any character other than " or \>
+                       | <mnemonic escape> | \" | \\
+                       | <inline hex escape>
+<mnemonic escape>    ::= \a | \b | \t | \n | \r
+<inline hex escape>  ::= \x<hex scalar value>;
+<hex scalar value>   ::= <hex digit>+
+<hex digit>          ::= <digit> | a | b | c | d | e | f
+
+<symbol>             ::= <initial> <subsequent>*
+<initial>            ::= <letter> | <special initial>
+<letter>             ::= a | b | c | d | e | f | g | h | i | j | k | l | m
+                       | n | o | p | q | r | s | t | u | v | w | x | y | z
+                       | A | B | C | D | E | F | G | H | I | J | K | L | M
+                       | N | O | P | Q | R | S | T | U | V | W | X | Y | Z
+<special initial>    ::= ! | $ | % | & | * | / | : | < | = | > | ? | ^ | _ | ~
+<subsequent>         ::= <initial> | <digit> | <special subsequent>
+<special subsequent> ::= + | - | . | @
+
+<whitespace>         ::= <newline> | <return> <newline> | <return>
+#+END_SRC
